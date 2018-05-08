@@ -6,19 +6,76 @@
 <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
 </head>
 <body>
-<p>This is where you write your page. Tada.</p>
-<!-- Create the editor container -->
-<div id="editor">
-  <p>Hello World!</p>
-  <p>Some initial <strong>bold</strong> text</p>
-  <p><br></p>
-</div>
 
 <!-- Initialize Quill editor -->
 <script>
-  var quill = new Quill('#editor', {
+  var editor = new Quill('#editor-container', {
     theme: 'snow'
+    modules: {
+          'toolbar': { container: '#formatting-container' },
+          'image-tooltip': true,
+          'link-tooltip': true
+        }
   });
-</script>
+      editor.on('selection-change', function(range) {
+        console.log('selection-change', range)
+      });
+      editor.on('text-change', function(delta, source) {
+        console.log('text-change', delta, source)
+      });
+    function post() {
+      method = "post"; 
+
+      var form = document.createElement("form");
+      form.setAttribute("method", method);
+      form.setAttribute("action", "");
+
+      var hiddenField = document.createElement("input");
+      hiddenField.setAttribute("type", "hidden");
+      hiddenField.setAttribute("name", "contents");
+      hiddenField.setAttribute("value", editor.getHTML());
+
+      form.appendChild(hiddenField);
+
+      document.body.appendChild(form);
+      form.submit();
+    }
+    </script>
+
+// inside of the server code for my sample app, I need to handle GET/POST
+// (part of server.go)
+    server.Get("/edit", func(r render.Render) {
+        contents := ""
+        // I would fetch what I wanted to edit here 
+        // and assign it to 'contents' (a string)
+        r.HTML(200, "editorTemplate", template.HTML(string(contents)))
+    })
+
+    server.Post("/edit", func(r render.Render, resp http.ResponseWriter, req *http.Request) {
+        contents := req.FormValue("contents")
+        // I would save the editor 'contents' here
+        r.HTML(200, "editorTemplate", template.HTML(string(contents)))
+    })
+
+<!-- the HTML portion of the editor -->
+    <div id="content-container">
+      <div id="editor-wrapper">
+        <div id="formatting-container">
+    <select title="Size" class="sc-size">
+      <option value="10px">Small</option>
+      <option value="13px" selected="">Normal</option>
+      <option value="18px">Large</option>
+      <option value="32px">Huge</option>
+    </select>
+    <button class="sc-bold">Bold</button>
+    <button class="sc-italic">Italic</button>
+        </div>
+        <div id="editor-container">
+<p>This is where you write your page. Tada.</p>
+</div>
+      </div>
+<a href="javascript: post()">Save</a>
+
+    </div>
 </body>
 </html>
