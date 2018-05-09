@@ -7,9 +7,42 @@
 <div>
 User: <input type="text" id="userx"><br>
 Pass: <input type="text" id="passx"><br>
-<button onclick="alert('login!');">Login</button><button onclick="alert('register!');">Register</button>
+<button onclick="login();">Login</button><button onclick="register();">Register</button>
 <h1>WP Story Board</h1>
 <p>coming soon</p>
+<script>
+function login(){
+user = document.getElementById("userx").value;
+pass = document.getElementById("passx").value;
+if (user != ""){
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+if(this.responseText == "true"){
+	//code here to switch to the logged in screen:
+	alert("logged in");
+	window.location="loggedin.php";
+}else{
+	alert("invalid login credentials");
+}
+}
+};
+xhttp.open("GET", "user_login.php?id="+user+"&pass="+pass, true);
+xhttp.send();
+}else{
+    alert("username cannot be null.");
+}}
+function register(){
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+eval(this.responseText);
+}
+};
+xhttp.open("GET", "user_registration.php?id="+document.getElementById("userx").value+"&pass="+document.getElementById("passx").value, true);
+xhttp.send();
+}
+</script>
 </center>
 </body>
 </html>
