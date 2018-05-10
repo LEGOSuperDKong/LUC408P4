@@ -1,4 +1,9 @@
 <html>
+<head>
+<title>WP Story Board</title>
+<link rel = "stylesheet" type = "text/css" href = "style.css"></link>
+<link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
+</head>
 <body>
 <?php
 if (isset($_GET['user'])) {
