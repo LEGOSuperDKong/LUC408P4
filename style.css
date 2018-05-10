@@ -1,9 +1,35 @@
-body {background-image: pexels-photo-768125.jpeg;
+body {
+background-image: url("pexels-photo-768125.jpeg");
 font-family: 'Pangolin', cursive;
 }
 
-h1 {font-size: 18;
+h1 {
+font-size: 18;
 }
 
-div {position: fixed;
+div {
+position: fixed;
+}
+
+#login {
+margin: auto;
+width: 100%;
+padding: 5px;
+}
+
+input {
+padding 5px;
+margin-bottom: 10px;
+margin-right: 20px;
+margin-left: 20px;
+}
+
+button {
+border-color: #00ace6;
+border-radius: 7%;
+background-color: #99ccff;
+font-family: Verdana;
+border-style: solid;
+width: 100px;
+margin: 15px;
 }
