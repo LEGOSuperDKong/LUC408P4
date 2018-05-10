@@ -21,7 +21,7 @@ if (this.readyState == 4 && this.status == 200) {
 if(this.responseText == "true"){
 	//code here to switch to the logged in screen:
 	alert("logged in");
-	window.location="loggedin.php";
+	window.location=("loggedin.php?user="+user);
 }else{
 	alert("invalid login credentials");
 }

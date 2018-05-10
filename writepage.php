@@ -1,6 +1,10 @@
 <?php
 if (isset($_GET['id'])) {
 $id = $_GET['id'];}
+if (isset($_GET['user'])) {
+$user = $_GET['user'];}
+if (isset($_GET['auth'])) {
+$auth = $_GET['auth'];}
 ?>
 <html>
 <head>
@@ -11,7 +15,7 @@ $id = $_GET['id'];}
 <body>
 <p>This is where you write your page. Tada.</p>
 <!-- Create the editor container -->
-<div id="editor">
+<div style="height:50%" id="editor">
   <p>Hello World!</p>
   <p>Some initial <strong>bold</strong> text</p>
   <p><br></p>
@@ -34,15 +38,33 @@ echo "id = '".$id."';";
 echo "contentx = ".$contx.";";
 ?>
 </script>
+
+<script>
+<?php
+echo "userx = '".$user."';";
+?>
+</script>
+
+<script>
+<?php
+echo "authx = '".$auth."';";
+?>
+</script>
+
+<button onclick="save();" id="saverx">Save</button>
 <script>
 function load_content(){
 	quill.setContents(contentx);
+	if(authx != userx){
+		quill.disable();
+		document.getElementById("saverx").innerHTML = "Back";
+	}
 }
 function save(){
 var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function() {
 if (this.readyState == 4 && this.status == 200) {
-	window.location="loggedin.php";
+	window.location="loggedin.php?user="+userx;
 }
 };
 urlx = "save.php?id="+id+"&con="+encodeURIComponent(JSON.stringify(quill.getContents()));
@@ -51,6 +73,5 @@ xhttp.send();
 }
 load_content();
 </script>
-<button onclick="save();">save</button>
 </body>
 </html>
