@@ -5,6 +5,9 @@ font-family: 'Pangolin', cursive;
 
 h1 {
 font-size: 18;
+margin: auto;
+
+width: 100%;
 }
 
 div {
@@ -12,6 +15,12 @@ position: fixed;
 }
 
 #login {
+margin: auto;
+width: 100%;
+padding: 5px;
+}
+
+#pagecontent {
 margin: auto;
 width: 100%;
 padding: 5px;
