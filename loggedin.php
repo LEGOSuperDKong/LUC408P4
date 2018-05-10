@@ -15,10 +15,11 @@ $user = $_GET['user'];}
 echo "userx = '".$user."';";
 ?>
 </script>
-
+<div id = "pagecontent">
 <h1>Create a new story</h1>
 <input type="text" name="Name" value="name of story" id="namex"><button onclick="create();">Create</button>
 <h1>Latest Stories: (oldest on top)</h1>
+
 <?php
 $contx = file_get_contents("stories.ac");
 $contx = str_replace("123user321", $user, $contx);
@@ -32,5 +33,6 @@ function create(){
 	window.location = "new.php?id="+n+"&name="+document.getElementById("namex").value+"&user="+userx;
 }
 </script>
+</div>
 </body>
 </html>
