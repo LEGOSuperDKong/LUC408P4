@@ -11,6 +11,9 @@ $auth = $_GET['auth'];}
 <!-- Main Quill library -->
 <script src="https://cdn.quilljs.com/1.1.9/quill.js"></script>
 <link href="https://cdn.quilljs.com/1.1.9/quill.snow.css" rel="stylesheet">
+<title>WP Story Editor</title>
+<link rel = "stylesheet" type = "text/css" href = "style.css"></link>
+<link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
 </head>
 <body>
 <p>This is where you write your page. Tada.</p>
